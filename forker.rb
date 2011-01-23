@@ -9,6 +9,7 @@ require './preprocessor.rb'
 beginning_time = Time.now
 
   # proces unu
+  # codul din block ruleaza intr-un nou proces
   pid_proces_unu = Process.fork do 
       prep = Preprocessor.new "ruby"
       prep.start_preprocessor
@@ -26,7 +27,7 @@ beginning_time = Time.now
   Process.wait
 
 end_time = Time.now
-puts "Timpul rularii #{(end_time - beginning_time)*1000} milliseconds"
+puts "Timpul rularii #{(end_time - beginning_time)*1000} milisecunde"
 
 # exit status
 puts "Exit " + $?.exitstatus.to_s
