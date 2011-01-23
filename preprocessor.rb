@@ -11,7 +11,7 @@ class Preprocessor
   
   def initialize( uri_address = "http://google.com", search_item = "monad" )
     @uri_address = uri_address
-    @search_item = "/search?q" + search_item
+    @search_item = "/search?q=" + search_item
   end
   
   def start_preprocessor
