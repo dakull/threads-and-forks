@@ -6,6 +6,7 @@ def func1
     i = i + 1
   end
 end
+
 def func2
   i = 0
   while i <= 5

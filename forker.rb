@@ -6,17 +6,27 @@ require 'open-uri'
 require 'nokogiri'
 require './preprocessor.rb'
 
-pid_proces_unu = Process.fork do 
-  # putin benchmarking
-  beginning_time = Time.now
-    prep = Preprocessor.new "monad"
-    prep.start_preprocessor
-  end_time = Time.now
-  puts "Timpul rularii #{(end_time - beginning_time)*1000} milliseconds"
-end
+beginning_time = Time.now
 
-puts "## Fork Process 1 PID: " + pid_proces_unu
+  # proces unu
+  pid_proces_unu = Process.fork do 
+      prep = Preprocessor.new "ruby"
+      prep.start_preprocessor
+  end
+  puts "## Fork Process 1 PID: " + pid_proces_unu.to_s
+  
+  # proces doi
+  pid_proces_doi = Process.fork do 
+      prep = Preprocessor.new "javascript"
+      prep.start_preprocessor
+  end
+  puts "## Fork Process 2 PID: " + pid_proces_doi.to_s
+  
+  # wait to finish
+  Process.wait
 
-Process.wait
+end_time = Time.now
+puts "Timpul rularii #{(end_time - beginning_time)*1000} milliseconds"
+
 # exit status
 puts "Exit " + $?.exitstatus.to_s
