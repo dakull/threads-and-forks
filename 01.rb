@@ -1,7 +1,7 @@
 #
 # threads test 01
 #
-#puts 'Hello threads'
+# puts 'Hello threads'
 
 s1 = Thread.new do 
 	puts 'reretest'
